@@ -1,0 +1,23 @@
+import add_sub_lemmas
+
+claim div_ineq: (a > 0 && b | a) => (b < a || a = b) {
+    claim 
+}
+
+claim gcd_zero: gcd(a,0) = a {
+    claim a_div_a: a | a {
+        divide_def.sub({a:a, b:a, c:inc(0)})
+    }
+    claim a_div_zero: a | 0 {
+        divide_def.sub({a:a, b:0, c:0})
+    }
+
+}
+
+claim gcd_sub: gcd(a,b) = gcd(a,a-b) {
+
+}
+
+claim bezout: (E p,q : (a X p) + (b X q) = gcd(a,b)) {
+
+}

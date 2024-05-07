@@ -1,0 +1,13 @@
+import gcd_div_lemmas
+
+claim construction: (
+    m>1 && n>1 && gcd(m,n) = 1 &&
+    k > m X n - m - n =>
+    E a,b : a>=0 && b>=0 && (a X m) + (b X n) = k
+)
+
+claim impossible: (
+    m>1 && n>1 && gcd(m,n) = 1 &&
+    k = m X n - m - n =>
+    not (E a,b : a>=0 && b>=0 && (a X m) + (b X n) = k)
+)

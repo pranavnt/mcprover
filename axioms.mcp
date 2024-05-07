@@ -1,7 +1,7 @@
-# builtins: fA, E, True, False, substitution, equality
+# builtins: fA, E, True, False, substitution, equality, smart simplifier
 # patternmatch by a, b, c, ... in order
 
-declare 0
+declare 0, 1
 
 operator inc(a)
 operator dec(a)
@@ -13,10 +13,18 @@ operator gcd(a,b)
 declarator a < b
 declarator a | b
 
+axiom def_one: 1 = inc(0)
+
 axiom dec_inc: dec(inc(a)) = inc(dec(a))
+
 axiom add_zero: a + 0 = a
 axiom add_inc: a + inc(b) = inc(a + b)
+
+axiom sub_zero: a - 0 = a
 axiom sub_inc: a - inc(b) = pred( a - b )
+
+axiom mul_zero: a X 0 = 0
+axiom mul_comm: a X b = b X a
 axiom mul_inc: a X inc(b) = ( a X b ) + b
 
 axiom divide_def: a | b = (E c : a X c = b)
@@ -26,9 +34,15 @@ axiom lt_inc: a < inc(a)
 required axiom gcd_def: (gcd(a,b) | a) && (gcd(a,b) | b)
 required axiom c > gcd(a,b) => not (c | a)
 
-# induction
-axiom ( declarator P(x) ) ( 
+# up-down induction
+axiom induct: ( declarator P(x) ) ( 
         P(0) &&
         P(x) => P(inc(x)) &&
         P(x) => P(dec(x))
     ) => fA x : P(x)
+
+# strong induction upwards
+axiom strong_induct: ( declarator P(x) ) ( 
+        P(0) &&
+        (fA k: (0<k && k<x) => P(k)) => P(x)
+    ) => fA x : 0<=x => P(x)

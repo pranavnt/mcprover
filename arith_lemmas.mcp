@@ -1,0 +1,42 @@
+use axiom axioms
+
+claim add_assoc: a + (b + c) = (a + b) + c {
+    claim P(_a): add_assoc.statement
+    claim P_base: P(0) {}
+    claim P_inc: P(a) => P(inc(a)) {apply add_inc}
+    claim P_dec: P(a) => P(dec(a)) {apply add_dec}
+    use induct(P)(P_base, P_inc, P_dec)
+}
+
+claim add_comm: a + b = b + a {
+    claim P(_a): add_comm.statement
+    claim P_base: P(0) {}
+    claim P_inc: P(a) => P(inc(a)) {apply add_inc; sub P(a)}
+    claim P_dec: P(a) => P(dec(a)) {apply add_dec; sub P(a)}
+    use induct(P)(P_base, P_inc, P_dec)
+}
+
+claim mul_comm: a X b = b X a {
+    prop P(_a): mul_comm.statement
+    claim P_base: P(0) {}
+    claim P_inc: P(a) => P(inc(a)) {apply add_inc; sub P(a)}
+    claim P_dec: P(a) => P(dec(a)) {apply add_dec; sub P(a)}
+    use induct(P)(P_base, P_inc, P_dec)
+}
+
+claim mul_distrib: a X (b + c) = a X b + a X c {
+    prop P(_c): 
+}
+
+
+claim sub_expand: a - (b - c) = a - b + c {
+
+}
+
+claim floor_divide:
+    (d>0) && (n>0) => (E q,r : 
+        (q X d) + r = n &&
+        0 <= r <= n
+    ) {
+
+}

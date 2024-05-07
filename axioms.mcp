@@ -13,19 +13,21 @@ operator gcd(a,b)
 declarator a < b
 declarator a | b
 
-axiom dec(inc(a)) = inc(dec(a))
-axiom a + 0 = a
-axiom 0 + a = a
-axiom a + inc(b) = inc(a + b)
-axiom a X inc(b) = ( a X b ) + b
+axiom dec_inc: dec(inc(a)) = inc(dec(a))
+axiom add_zero: a + 0 = a
+axiom add_comm: a + b = b + a
+axiom add_assoc: a + (b + c) = (a + b) + c
+axiom expand_inc: a + inc(b) = inc(a + b)
+axiom inc_distrib: a X inc(b) = ( a X b ) + b
+axiom mult_distrib: a X (b + c) = a X b + a X c
 axiom a - inc(b) = pred( a - b )
 
-axiom a | b = (E c : a X c = b)
-axiom a < inc(a)
+axiom divide_def: a | b = (E c : a X c = b)
+axiom lt_inc: a < inc(a)
 
 # gcd defined as largest nonnegative GCD of any two integers
-axiom (gcd(a,b) | a) && (gcd(a,b) | b)
-axiom c > gcd(a,b) => not (c | a)
+required axiom gcd_def: (gcd(a,b) | a) && (gcd(a,b) | b)
+required axiom c > gcd(a,b) => not (c | a)
 
 # induction
 axiom ( declarator P(x) ) ( 

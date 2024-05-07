@@ -1,15 +1,27 @@
 use axiom axioms
 
-lemma add_assoc: a + (b + c) = (a + b) + c {
+theorem add_assoc: a + (b + c) = (a + b) + c {
     prop P(a): a + (b + c) = (a + b) + c
-    lemma P(0) {}
-    lemma P(inc(a)) {
-        
+    theorem P(0) {}
+    theorem P(inc(a)) {apply }
+}
+
+theorem add_comm: a + b = b + a {
+
+}
+
+theorem sub_expand: a - (b)
+
+theorem gcd_zero: gcd(a,0) = a {
+    theorem a_div_a: a | a {
+        divide_def.sub({a:a, b:a, c:inc(0)})
     }
+    theorem a_div_a: a | 0 {
+        divide_def.sub({a:a, b:0, c:0})
+    }
+
 }
 
-lemma add_comm: a + b = b + a {
-
+theorem gcd_sub: gcd(a,b) = gcd(a,a-b) {
+    
 }
-
-lemma sub_expand: a - (b)

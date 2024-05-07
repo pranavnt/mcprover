@@ -1,0 +1,15 @@
+use axiom axioms
+
+lemma add_assoc: a + (b + c) = (a + b) + c {
+    prop P(a): a + (b + c) = (a + b) + c
+    lemma P(0) {}
+    lemma P(inc(a)) {
+        
+    }
+}
+
+lemma add_comm: a + b = b + a {
+
+}
+
+lemma sub_expand: a - (b)

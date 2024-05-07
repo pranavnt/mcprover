@@ -1,3 +1,6 @@
+# builtins: fA, E, True, False, substitution, equality
+# patternmatch by a, b, c, ... in order
+
 declare 0
 
 operator inc(a)
@@ -7,11 +10,26 @@ operator a X b
 operator a - b
 operator gcd(a,b)
 
-declarator a = b
-declarator a | b
-declarator a > b
 declarator a < b
 declarator a | b
 
-axiom a = b => b = a
-axiom dec(inc(x)) = inc(dec(x))
+axiom dec(inc(a)) = inc(dec(a))
+axiom a + 0 = a
+axiom 0 + a = a
+axiom a + inc(b) = inc(a + b)
+axiom a X inc(b) = ( a X b ) + b
+axiom a - inc(b) = pred( a - b )
+
+axiom a | b = (E c : a X c = b)
+axiom a < inc(a)
+
+# gcd defined as largest nonnegative GCD of any two integers
+axiom (gcd(a,b) | a) && (gcd(a,b) | b)
+axiom c > gcd(a,b) => not (c | a)
+
+# induction
+axiom ( declarator P(x) ) ( 
+        P(0) &&
+        P(x) => P(inc(x)) &&
+        P(x) => P(dec(x))
+    ) => fA x : P(x)

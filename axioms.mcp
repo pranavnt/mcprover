@@ -15,12 +15,9 @@ declarator a | b
 
 axiom dec_inc: dec(inc(a)) = inc(dec(a))
 axiom add_zero: a + 0 = a
-axiom add_comm: a + b = b + a
-axiom add_assoc: a + (b + c) = (a + b) + c
-axiom expand_inc: a + inc(b) = inc(a + b)
-axiom inc_distrib: a X inc(b) = ( a X b ) + b
-axiom mult_distrib: a X (b + c) = a X b + a X c
-axiom a - inc(b) = pred( a - b )
+axiom add_inc: a + inc(b) = inc(a + b)
+axiom sub_inc: a - inc(b) = pred( a - b )
+axiom mul_inc: a X inc(b) = ( a X b ) + b
 
 axiom divide_def: a | b = (E c : a X c = b)
 axiom lt_inc: a < inc(a)

@@ -1,27 +1,42 @@
 use axiom axioms
 
-theorem add_assoc: a + (b + c) = (a + b) + c {
-    prop P(a): a + (b + c) = (a + b) + c
-    theorem P(0) {}
-    theorem P(inc(a)) {apply }
+claim add_comm: a + b = b + a
+claim add_assoc: a + (b + c) = (a + b) + c
+claim mul_distrib: a X (b + c) = a X b + a X c
+
+claim add_assoc: a + (b + c) = (a + b) + c {
+    prop P(_a): add_assoc.statement
+    claim P_base: P(0) {}
+    claim P_inc: P(a) => P(inc(a)) {apply add_inc}
+    claim P_dec: P(a) => P(dec(a)) {apply add_dec}
+    use induct(P, P_base, P_inc, P_dec)
 }
 
-theorem add_comm: a + b = b + a {
+claim add_comm: a + b = b + a {
+    prop P(_a): add_comm.statement
+    claim P_base: P(0) {}
+    claim P_inc: P(a) => P(inc(a)) {apply add_inc; sub P(a)}
+    claim P_dec: P(a) => P(dec(a)) {apply add_dec; sub P(a)}
+    use induct(P, P_base, P_inc, P_dec)
 
 }
 
-theorem sub_expand: a - (b)
+claim sub_expand: a - (b)
 
-theorem gcd_zero: gcd(a,0) = a {
-    theorem a_div_a: a | a {
+claim div_ineq: (a > 0 && b | a) => (b < a || a = b) {
+    claim 
+}
+
+claim gcd_zero: gcd(a,0) = a {
+    claim a_div_a: a | a {
         divide_def.sub({a:a, b:a, c:inc(0)})
     }
-    theorem a_div_a: a | 0 {
+    claim a_div_zero: a | 0 {
         divide_def.sub({a:a, b:0, c:0})
     }
 
 }
 
-theorem gcd_sub: gcd(a,b) = gcd(a,a-b) {
-    
+claim gcd_sub: gcd(a,b) = gcd(a,a-b) {
+
 }

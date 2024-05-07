@@ -1,0 +1,17 @@
+declare 0
+
+operator inc(a)
+operator dec(a)
+operator a + b
+operator a X b
+operator a - b
+operator gcd(a,b)
+
+declarator a = b
+declarator a | b
+declarator a > b
+declarator a < b
+declarator a | b
+
+axiom a = b => b = a
+axiom dec(inc(x)) = inc(dec(x))

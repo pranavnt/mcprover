@@ -1,0 +1,3 @@
+use mc::Int;
+
+type

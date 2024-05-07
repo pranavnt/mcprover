@@ -25,7 +25,7 @@ axiom sub_inc: a - inc(b) = pred( a - b )
 
 axiom mul_zero: a X 0 = 0
 axiom mul_comm: a X b = b X a
-axiom mul_inc: a X inc(b) = ( a X b ) + b
+axiom mul_inc: a X inc(b) = ( a X b ) + a
 
 axiom divide_def: a | b = (E c : a X c = b)
 axiom lt_inc: a < inc(a)
@@ -40,6 +40,12 @@ axiom induct: ( declarator P(x) ) (
         P(x) => P(inc(x)) &&
         P(x) => P(dec(x))
     ) => fA x : P(x)
+
+# up induction
+axiom induct_up: ( declarator P(x) ) ( 
+        P(0) &&
+        P(x) => P(inc(x))
+    ) => fA x : (x >= 0) => P(x)
 
 # strong induction upwards
 axiom strong_induct: ( declarator P(x) ) ( 
